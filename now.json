@@ -1,0 +1,12 @@
+{
+    "name": "platzivideo",
+    "version": 2,
+    "builds": [{ "src": "index.js", "use": "@now/node" }],
+    "routes": [{ "src": "/(.*)", "dest": "index.js" }],
+    "env": {
+        "DB_USER": "@ej-platzivideo-db-user",
+        "DB_PASSWORD": "@ej-platzivideo-db-password",
+        "DB_HOST": "@ej-platzivideo-db-host",
+        "DB_NAME": "@ej-platzivideo-db-name"
+    }
+}

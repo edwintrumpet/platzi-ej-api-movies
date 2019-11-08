@@ -24,3 +24,41 @@ npx mrm lint-staged
 ```
 
 Para la construcción del archivo `.gitignore` se usó la plataforma https://www.gitignore.io/
+
+### Deploy en Now
+
+Instalación de now
+
+```shell
+npm i -g now
+```
+
+Lo primero que hacemos es agregar las variables de entorno, para hacerlo usamos los comandos
+
+```shell
+now secret add <nombre de la variable> <valor>
+```
+ Por ejemplo para agregar la variable **db-user** y el valor **admin**
+
+ ```shell
+ now secret add db-user admin
+ ```
+
+ Para hacer un despliegue local de prueba ejecutamos el comando
+
+ ```shell
+ now dev
+ ```
+
+ Para hacer el despliegue en producción ejecutamos el comando
+
+ ```shell
+ now
+ ```
+
+ Si queremos una url más amigable podemos cambiarla usando el comando
+
+ ```shell
+ now alias <url antigua> <url nueva terminada en now.sh>
+ ```
+ 
