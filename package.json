@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha --exit",
     "dev": "DEBUG=app:* nodemon index",
-    "start": "NODE_ENV=production node index"
+    "start": "NODE_ENV=production node index",
+    "cover": "nyc npm run test",
+    "report": "nyc report --reporter=html && URL='./coverage/index.html'; xdg-open $URL || sensible-browser $URL || x-www-browser $URL"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
     "nodemon": "^1.19.4",
+    "nyc": "^14.1.1",
     "prettier": "^1.18.2"
   },
   "husky": {
@@ -49,6 +52,15 @@
     "*.js": [
       "eslint --fix",
       "git add"
+    ]
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "routes",
+      "services",
+      "lib",
+      "utils"
     ]
   }
 }
