@@ -1,5 +1,6 @@
 const express = require('express')
 const helmet = require('helmet')
+const debug = require('debug')('app:server')
 const { config } = require('./config')
 const moviesApi = require('./routes/movies')
 const { logErrors, wrapErrors, errorHandler } = require('./utils/middlewares/errorHandlers')
@@ -21,5 +22,5 @@ app.use(wrapErrors)
 app.use(errorHandler)
 
 app.listen(config.port, () => {
-    console.log(`Server on port ${config.port}`)
+    debug(`Server on port ${config.port}`)
 })
