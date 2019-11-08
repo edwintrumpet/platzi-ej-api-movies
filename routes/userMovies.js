@@ -7,7 +7,7 @@ const { userIdSchema } = require('../utils/schemas/users')
 
 const userMoviesApi = app => {
     const router = express.Router()
-    app.use('/api/user-movies', router())
+    app.use('/api/user-movies', router)
     const userMoviesService = new UserMovieService()
 
     router.get(

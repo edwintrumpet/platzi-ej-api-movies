@@ -4,6 +4,7 @@ const debug = require('debug')('app:server')
 const { config } = require('./config')
 const moviesApi = require('./routes/movies')
 const userMoviesApi = require('./routes/userMovies')
+const authApi = require('./routes/auth')
 const { logErrors, wrapErrors, errorHandler } = require('./utils/middlewares/errorHandlers')
 const notFoundHandler = require('./utils/middlewares/notFoundHandler')
 
@@ -14,6 +15,7 @@ app.disable('x-powered-by');
 
 app.use(express.json())
 
+authApi(app)
 userMoviesApi(app)
 moviesApi(app)
 app.use(notFoundHandler)
