@@ -61,4 +61,9 @@ now secret add <nombre de la variable> <valor>
  ```shell
  now alias <url antigua> <url nueva terminada en now.sh>
  ```
- 
+
+ ### Generador de tokens
+
+Se usa la aplicación https://keygen.io/ y se obtiene un WEP 256-bit key
+
+Los API_KEY_TOKENS los genero por medio del script `seedApiKeys.js` y los extraigo de la base de datos
