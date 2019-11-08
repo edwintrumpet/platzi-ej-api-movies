@@ -3,6 +3,7 @@ const helmet = require('helmet')
 const debug = require('debug')('app:server')
 const { config } = require('./config')
 const moviesApi = require('./routes/movies')
+const userMoviesApi = require('./routes/userMovies')
 const { logErrors, wrapErrors, errorHandler } = require('./utils/middlewares/errorHandlers')
 const notFoundHandler = require('./utils/middlewares/notFoundHandler')
 
@@ -13,6 +14,7 @@ app.disable('x-powered-by');
 
 app.use(express.json())
 
+userMoviesApi(app)
 moviesApi(app)
 app.use(notFoundHandler)
 
