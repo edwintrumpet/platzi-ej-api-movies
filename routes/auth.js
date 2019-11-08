@@ -4,6 +4,9 @@ const Boom = require('@hapi/boom')
 const jwt = require('jsonwebtoken')
 const ApiKeysService = require('../services/apiKeys')
 const { config } = require('../config')
+const UsersService = require('../services/users')
+const validationHandler = require('../utils/middlewares/validationHandler')
+const { createUserSchema } = require('../utils/schemas/users')
 // Basic strategy
 require('../utils/auth/strategies/basic')
 
@@ -11,6 +14,7 @@ const authApi = app => {
     const router = express.Router()
     app.use('/api/auth', router)
     const apiKeysService = new ApiKeysService()
+    const usersService = new UsersService()
 
     router.post('/sign-in', async (req, res, next) => {
         const { apiKeyToken } = req.body
@@ -45,6 +49,20 @@ const authApi = app => {
             }
         })(req, res, next)
     })
+
+    router.post(
+        '/sign-up',
+        validationHandler(createUserSchema),
+        async (req, res, next) => {
+            const { body: user } = req
+            try{
+                const createdUserId = await usersService.createUser({ user })
+                res.status(201).json({data: createdUserId, message: 'user created'})
+            }catch(err){
+                next(err)
+            }
+        }
+    )
 }
 
 module.exports = authApi
