@@ -67,3 +67,13 @@ now secret add <nombre de la variable> <valor>
 Se usa la aplicación https://keygen.io/ y se obtiene un WEP 256-bit key
 
 Los API_KEY_TOKENS los genero por medio del script `seedApiKeys.js` y los extraigo de la base de datos
+
+### Creación de proyecto en Google api para hacer autenticación en OAuth2.0
+
+1. Vamos a la [Consola de APIs  y servicios](https://console.developers.google.com) de Google
+2. Creamos un proyecto
+3. En el menú lateral izquierdo seleccionamos **Pantalla de consentimiento** y en **Nombre de la aplicación** asignamos un nombre que en este caso será **Platzi videos**
+4. En el menú lateral izquierdo seleccionamos **Credendials > Create credentials > OAuth client ID**
+5. Nos aseguramos de elegir **Web application** como tipo de aplicación
+6. Luego establecemos el nombre del cliente que en nuestro caso será **SSR server**, el **Authorized JavaScript Origins:** _http://localhost:8000_ y el **Authorized redirect URIs:** _http://localhost:8000/auth/google-oauth/callback_, después se cambiarán los valores en producción.
+7. Al final copiamos **Client ID** y **Client secret** y los usamos en nuestro entorno como **GOOGLE_CLIENT_ID** y **GOOGLE_CLIENT_SECRET**
